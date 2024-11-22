@@ -9,11 +9,7 @@ while cmd != "exit":
         author = input("type author: ")
         try:
             year = int(input("type year: "))
-            print("Year is not correct")
-            if type(title) is str and type(author) and type(year) is int:
-                print(BookManager.add_new_book(title, author, year))
-            else:
-                print("Incorrect input data")
+            print(BookManager.add_new_book(title, author, year))
         except:
             print("Year is not correct")
     elif cmd == "delete book":
@@ -25,4 +21,23 @@ while cmd != "exit":
                 print("Id cannot be less than 0")
         except:
             print("Enter correct id")
+    elif cmd == "find book":
+        title = input("type title (leave empty if you don't need it): ")
+        author = input("type author (leave empty if you don't need it): ")
+        year = input("type year (leave empty if you don't need it): ")
+        print(BookManager.find_book(title, author, year))
+    elif cmd == "all books":
+        print(BookManager.all_books())
+    elif cmd == "change status":
+        status = input("Type new status ").lower()
+        try:
+            id = int(input("type id: "))
+            if id > 0:
+                print(BookManager.delete_book(id, status))
+            else:
+                print("Id cannot be less than 0")
+        except:
+            print("Enter correct id")
+        print(BookManager.change_status(id, status))
     cmd = input("Type command\n").lower()
+
